@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="648c084a7685415782c584b2104cd6e7" Name="Diagram1">
+        <EntityTypeShape EntityType="TaskManagementTestModel.ApplicationType" Width="1.5" PointX="11.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.BaseActual" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.BaseHistorical" Width="1.5" PointX="7.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.BaseInfo" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.BasePolicy" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.BaseType" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.DataFormula" Width="1.5" PointX="8.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.DataResult" Width="1.5" PointX="10.5" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.DataSource" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.FormulaPolicy" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.FormulaType" Width="1.5" PointX="6" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.MonitorPolicy" Width="1.5" PointX="7.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.PolicyType" Width="1.5" PointX="6" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.SourceHandle" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.SourceType" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.TaskApplication" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.TaskManualState" Width="1.5" PointX="15.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.TaskRefreshTime" Width="1.5" PointX="9.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TaskManagementTestModel.TriggerPolicy" Width="1.5" PointX="8.25" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_TaskApplication_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BaseActual_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BaseActual_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BaseHistorical_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BaseInfo_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BaseInfo_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BasePolicy_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_BasePolicy_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_DataFormula_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_DataResult_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_FormulaPolicy_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_DataSource_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_FormulaPolicy_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_TriggerPolicy_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_SourceHandle_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_TaskApplication_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="TaskManagementTestModel.FK_TaskManualState_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

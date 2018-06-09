@@ -1,0 +1,1386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TaskManagementTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApplicationType">
+          <Key>
+            <PropertyRef Name="appTypeID" />
+          </Key>
+          <Property Name="appTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaseActual">
+          <Key>
+            <PropertyRef Name="baseActualId" />
+          </Key>
+          <Property Name="baseActualId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BaseInfoId" Type="int" Nullable="false" />
+          <Property Name="updateTime" Type="datetime" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="50" />
+          <Property Name="attr" Type="nvarchar(max)" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="baseTypeId" Type="int" Nullable="false" />
+          <Property Name="valueStr" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="BaseHistorical">
+          <Key>
+            <PropertyRef Name="baseHistoricalId" />
+          </Key>
+          <Property Name="baseHistoricalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baseInfoId" Type="int" Nullable="false" />
+          <Property Name="historicalDate" Type="datetime" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="50" />
+          <Property Name="attr" Type="nvarchar(max)" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="valueStr" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="BaseInfo">
+          <Key>
+            <PropertyRef Name="baseInfoId" />
+          </Key>
+          <Property Name="baseInfoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baseTypeId" Type="int" Nullable="false" />
+          <Property Name="baseName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="foreachSourceId" Type="int" Nullable="false" />
+          <Property Name="beformSourceId" Type="int" Nullable="false" />
+          <Property Name="isActual" Type="bit" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="foreachParam" Type="nvarchar(max)" />
+          <Property Name="beform" Type="nvarchar(max)" />
+          <Property Name="before" Type="nvarchar(max)" />
+          <Property Name="token" Type="nvarchar" MaxLength="200" />
+          <Property Name="refererUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="handleId" Type="int" Nullable="false" />
+          <Property Name="openTime" Type="datetime" />
+          <Property Name="openResult" Type="nvarchar(max)" />
+          <Property Name="restartCount" Type="int" Nullable="false" />
+          <Property Name="valueType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BasePolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baseInfoId" Type="int" Nullable="false" />
+          <Property Name="policyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaseType">
+          <Key>
+            <PropertyRef Name="baseTypeId" />
+          </Key>
+          <Property Name="baseTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="parentId" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataFormula">
+          <Key>
+            <PropertyRef Name="dataFormulaId" />
+          </Key>
+          <Property Name="dataFormulaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formulaTypeId" Type="int" Nullable="false" />
+          <Property Name="formula" Type="nvarchar(max)" />
+          <Property Name="formulaCode" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="formulaRemark" Type="nvarchar" MaxLength="100" />
+          <Property Name="otherRemark" Type="nvarchar(max)" />
+          <Property Name="sort" Type="float" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DataResult">
+          <Key>
+            <PropertyRef Name="dataResultId" />
+          </Key>
+          <Property Name="dataResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataFormulaId" Type="int" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="historicalDate" Type="datetime" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="50" />
+          <Property Name="attr" Type="nvarchar(max)" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="formulaCode" Type="nvarchar(max)" />
+          <Property Name="process" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DataSource">
+          <Key>
+            <PropertyRef Name="sourceId" />
+          </Key>
+          <Property Name="sourceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sourceName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="sourceTypeId" Type="int" Nullable="false" />
+          <Property Name="sourceHost" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="sourceUsername" Type="nvarchar" MaxLength="2500" />
+          <Property Name="sourcePassword" Type="nvarchar" MaxLength="2500" />
+          <Property Name="isProtect" Type="nvarchar" MaxLength="500" />
+          <Property Name="sourceConnection" Type="nvarchar" MaxLength="2500" />
+          <Property Name="sourceOther" Type="nvarchar(max)" />
+          <Property Name="databaseName" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormulaPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dataFormulaId" Type="int" Nullable="false" />
+          <Property Name="policyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormulaType">
+          <Key>
+            <PropertyRef Name="formulaTypeId" />
+          </Key>
+          <Property Name="formulaTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="parentId" Type="int" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MonitorPolicy">
+          <Key>
+            <PropertyRef Name="monitorID" />
+          </Key>
+          <Property Name="monitorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monitorTag" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="monitorVal" Type="int" />
+          <Property Name="remark" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PolicyType">
+          <Key>
+            <PropertyRef Name="policyTypeId" />
+          </Key>
+          <Property Name="policyTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="policyTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SourceHandle">
+          <Key>
+            <PropertyRef Name="sourceHandleId" />
+          </Key>
+          <Property Name="sourceHandleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sourceTypeId" Type="int" Nullable="false" />
+          <Property Name="handleInfo" Type="nvarchar" MaxLength="200" />
+          <Property Name="interfaceInfo" Type="nvarchar" MaxLength="200" />
+          <Property Name="interfaceNumber" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="SourceType">
+          <Key>
+            <PropertyRef Name="sourceTypeId" />
+          </Key>
+          <Property Name="sourceTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sourceTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskApplication">
+          <Key>
+            <PropertyRef Name="appId" />
+          </Key>
+          <Property Name="appId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appTitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="appTypeID" Type="int" Nullable="false" />
+          <Property Name="appPath" Type="nvarchar(max)" />
+          <Property Name="appParamKey" Type="nvarchar" MaxLength="2000" />
+          <Property Name="appParamType" Type="nvarchar" MaxLength="2000" />
+          <Property Name="appParamVlue" Type="nvarchar" MaxLength="2000" />
+          <Property Name="policyId" Type="int" Nullable="false" />
+          <Property Name="isProtect" Type="nvarchar" MaxLength="500" />
+          <Property Name="appSort" Type="float" Nullable="false" />
+          <Property Name="preopen" Type="nvarchar(max)" />
+          <Property Name="openTime" Type="datetime" />
+          <Property Name="openResult" Type="nvarchar(max)" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="remark" Type="nvarchar(max)" />
+          <Property Name="token" Type="nvarchar" MaxLength="200" />
+          <Property Name="refererUrl" Type="nvarchar" MaxLength="2000" />
+          <Property Name="appState" Type="int" Nullable="false" />
+          <Property Name="isKept" Type="int" Nullable="false" />
+          <Property Name="restartCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskManualState">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="appId" Type="int" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskRefreshTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="refreshTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TriggerPolicy">
+          <Key>
+            <PropertyRef Name="policyId" />
+          </Key>
+          <Property Name="policyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="policyName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="policyTypeId" Type="int" Nullable="false" />
+          <Property Name="taskSpace" Type="int" Nullable="false" />
+          <Property Name="taskType" Type="int" Nullable="false" />
+          <Property Name="dateList" Type="nvarchar(max)" />
+          <Property Name="dateSpace" Type="int" Nullable="false" />
+          <Property Name="startTime" Type="datetime" />
+          <Property Name="endTime" Type="datetime" />
+          <Property Name="remark" Type="nvarchar" MaxLength="2500" />
+          <Property Name="excludeHoliday" Type="bit" Nullable="false" />
+          <Property Name="restartCount" Type="int" Nullable="false" />
+          <Property Name="restartSpace" Type="int" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="createTime" Type="datetime" Nullable="false" />
+          <Property Name="dayList" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_BaseActual_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BaseActual" Type="Self.BaseActual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BaseActual">
+              <PropertyRef Name="BaseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseActual_ToTable_1">
+          <End Role="BaseType" Type="Self.BaseType" Multiplicity="1" />
+          <End Role="BaseActual" Type="Self.BaseActual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseType">
+              <PropertyRef Name="baseTypeId" />
+            </Principal>
+            <Dependent Role="BaseActual">
+              <PropertyRef Name="baseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseHistorical_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BaseHistorical" Type="Self.BaseHistorical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BaseHistorical">
+              <PropertyRef Name="baseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseInfo_ToTable">
+          <End Role="BaseType" Type="Self.BaseType" Multiplicity="1" />
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseType">
+              <PropertyRef Name="baseTypeId" />
+            </Principal>
+            <Dependent Role="BaseInfo">
+              <PropertyRef Name="baseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseInfo_ToTable_1">
+          <End Role="DataSource" Type="Self.DataSource" Multiplicity="1" />
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataSource">
+              <PropertyRef Name="sourceId" />
+            </Principal>
+            <Dependent Role="BaseInfo">
+              <PropertyRef Name="beformSourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePolicy_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BasePolicy" Type="Self.BasePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BasePolicy">
+              <PropertyRef Name="baseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePolicy_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="BasePolicy" Type="Self.BasePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="BasePolicy">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataFormula_ToTable">
+          <End Role="FormulaType" Type="Self.FormulaType" Multiplicity="1" />
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormulaType">
+              <PropertyRef Name="formulaTypeId" />
+            </Principal>
+            <Dependent Role="DataFormula">
+              <PropertyRef Name="formulaTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataResult_ToTable">
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="1" />
+          <End Role="DataResult" Type="Self.DataResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormula">
+              <PropertyRef Name="dataFormulaId" />
+            </Principal>
+            <Dependent Role="DataResult">
+              <PropertyRef Name="dataFormulaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataSource_ToTable">
+          <End Role="SourceType" Type="Self.SourceType" Multiplicity="1" />
+          <End Role="DataSource" Type="Self.DataSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="sourceTypeId" />
+            </Principal>
+            <Dependent Role="DataSource">
+              <PropertyRef Name="sourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulaPolicy_ToTable">
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="1" />
+          <End Role="FormulaPolicy" Type="Self.FormulaPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormula">
+              <PropertyRef Name="dataFormulaId" />
+            </Principal>
+            <Dependent Role="FormulaPolicy">
+              <PropertyRef Name="dataFormulaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulaPolicy_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="FormulaPolicy" Type="Self.FormulaPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="FormulaPolicy">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SourceHandle_ToTable">
+          <End Role="SourceType" Type="Self.SourceType" Multiplicity="1" />
+          <End Role="SourceHandle" Type="Self.SourceHandle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="sourceTypeId" />
+            </Principal>
+            <Dependent Role="SourceHandle">
+              <PropertyRef Name="sourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskApplication_ToTable">
+          <End Role="ApplicationType" Type="Self.ApplicationType" Multiplicity="1" />
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationType">
+              <PropertyRef Name="appTypeID" />
+            </Principal>
+            <Dependent Role="TaskApplication">
+              <PropertyRef Name="appTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskApplication_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="TaskApplication">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskManualState_ToTable">
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="1" />
+          <End Role="TaskManualState" Type="Self.TaskManualState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskApplication">
+              <PropertyRef Name="appId" />
+            </Principal>
+            <Dependent Role="TaskManualState">
+              <PropertyRef Name="appId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TriggerPolicy_ToTable">
+          <End Role="PolicyType" Type="Self.PolicyType" Multiplicity="1" />
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyType">
+              <PropertyRef Name="policyTypeId" />
+            </Principal>
+            <Dependent Role="TriggerPolicy">
+              <PropertyRef Name="policyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskManagementTestModelStoreContainer">
+          <EntitySet Name="ApplicationType" EntityType="Self.ApplicationType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseActual" EntityType="Self.BaseActual" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseHistorical" EntityType="Self.BaseHistorical" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseInfo" EntityType="Self.BaseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BasePolicy" EntityType="Self.BasePolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaseType" EntityType="Self.BaseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataFormula" EntityType="Self.DataFormula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataResult" EntityType="Self.DataResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataSource" EntityType="Self.DataSource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormulaPolicy" EntityType="Self.FormulaPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormulaType" EntityType="Self.FormulaType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonitorPolicy" EntityType="Self.MonitorPolicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyType" EntityType="Self.PolicyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SourceHandle" EntityType="Self.SourceHandle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SourceType" EntityType="Self.SourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskApplication" EntityType="Self.TaskApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskManualState" EntityType="Self.TaskManualState" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskRefreshTime" EntityType="Self.TaskRefreshTime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TriggerPolicy" EntityType="Self.TriggerPolicy" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BaseActual_ToTable" Association="Self.FK_BaseActual_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BaseActual" EntitySet="BaseActual" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseActual_ToTable_1" Association="Self.FK_BaseActual_ToTable_1">
+            <End Role="BaseType" EntitySet="BaseType" />
+            <End Role="BaseActual" EntitySet="BaseActual" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseHistorical_ToTable" Association="Self.FK_BaseHistorical_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BaseHistorical" EntitySet="BaseHistorical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseInfo_ToTable" Association="Self.FK_BaseInfo_ToTable">
+            <End Role="BaseType" EntitySet="BaseType" />
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseInfo_ToTable_1" Association="Self.FK_BaseInfo_ToTable_1">
+            <End Role="DataSource" EntitySet="DataSource" />
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePolicy_ToTable" Association="Self.FK_BasePolicy_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BasePolicy" EntitySet="BasePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePolicy_ToTable_1" Association="Self.FK_BasePolicy_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="BasePolicy" EntitySet="BasePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataFormula_ToTable" Association="Self.FK_DataFormula_ToTable">
+            <End Role="FormulaType" EntitySet="FormulaType" />
+            <End Role="DataFormula" EntitySet="DataFormula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataResult_ToTable" Association="Self.FK_DataResult_ToTable">
+            <End Role="DataFormula" EntitySet="DataFormula" />
+            <End Role="DataResult" EntitySet="DataResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataSource_ToTable" Association="Self.FK_DataSource_ToTable">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="DataSource" EntitySet="DataSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulaPolicy_ToTable" Association="Self.FK_FormulaPolicy_ToTable">
+            <End Role="DataFormula" EntitySet="DataFormula" />
+            <End Role="FormulaPolicy" EntitySet="FormulaPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulaPolicy_ToTable_1" Association="Self.FK_FormulaPolicy_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="FormulaPolicy" EntitySet="FormulaPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SourceHandle_ToTable" Association="Self.FK_SourceHandle_ToTable">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="SourceHandle" EntitySet="SourceHandle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskApplication_ToTable" Association="Self.FK_TaskApplication_ToTable">
+            <End Role="ApplicationType" EntitySet="ApplicationType" />
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskApplication_ToTable_1" Association="Self.FK_TaskApplication_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskManualState_ToTable" Association="Self.FK_TaskManualState_ToTable">
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+            <End Role="TaskManualState" EntitySet="TaskManualState" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TriggerPolicy_ToTable" Association="Self.FK_TriggerPolicy_ToTable">
+            <End Role="PolicyType" EntitySet="PolicyType" />
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TaskManagementTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ApplicationType">
+          <Key>
+            <PropertyRef Name="appTypeID" />
+          </Key>
+          <Property Name="appTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TaskApplication" Relationship="Self.FK_TaskApplication_ToTable" FromRole="ApplicationType" ToRole="TaskApplication" />
+        </EntityType>
+        <EntityType Name="BaseActual">
+          <Key>
+            <PropertyRef Name="baseActualId" />
+          </Key>
+          <Property Name="baseActualId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BaseInfoId" Type="Int32" Nullable="false" />
+          <Property Name="updateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="attr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="baseTypeId" Type="Int32" Nullable="false" />
+          <Property Name="valueStr" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaseInfo" Relationship="Self.FK_BaseActual_ToTable" FromRole="BaseActual" ToRole="BaseInfo" />
+          <NavigationProperty Name="BaseType" Relationship="Self.FK_BaseActual_ToTable_1" FromRole="BaseActual" ToRole="BaseType" />
+        </EntityType>
+        <EntityType Name="BaseHistorical">
+          <Key>
+            <PropertyRef Name="baseHistoricalId" />
+          </Key>
+          <Property Name="baseHistoricalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baseInfoId" Type="Int32" Nullable="false" />
+          <Property Name="historicalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="attr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="valueStr" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BaseInfo" Relationship="Self.FK_BaseHistorical_ToTable" FromRole="BaseHistorical" ToRole="BaseInfo" />
+        </EntityType>
+        <EntityType Name="BaseInfo">
+          <Key>
+            <PropertyRef Name="baseInfoId" />
+          </Key>
+          <Property Name="baseInfoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baseTypeId" Type="Int32" Nullable="false" />
+          <Property Name="baseName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="foreachSourceId" Type="Int32" Nullable="false" />
+          <Property Name="beformSourceId" Type="Int32" Nullable="false" />
+          <Property Name="isActual" Type="Boolean" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="foreachParam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="beform" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="before" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="refererUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="handleId" Type="Int32" Nullable="false" />
+          <Property Name="openTime" Type="DateTime" Precision="3" />
+          <Property Name="openResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="restartCount" Type="Int32" Nullable="false" />
+          <Property Name="valueType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseActual" Relationship="Self.FK_BaseActual_ToTable" FromRole="BaseInfo" ToRole="BaseActual" />
+          <NavigationProperty Name="BaseHistorical" Relationship="Self.FK_BaseHistorical_ToTable" FromRole="BaseInfo" ToRole="BaseHistorical" />
+          <NavigationProperty Name="BaseType" Relationship="Self.FK_BaseInfo_ToTable" FromRole="BaseInfo" ToRole="BaseType" />
+          <NavigationProperty Name="DataSource" Relationship="Self.FK_BaseInfo_ToTable_1" FromRole="BaseInfo" ToRole="DataSource" />
+          <NavigationProperty Name="BasePolicy" Relationship="Self.FK_BasePolicy_ToTable" FromRole="BaseInfo" ToRole="BasePolicy" />
+        </EntityType>
+        <EntityType Name="BasePolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baseInfoId" Type="Int32" Nullable="false" />
+          <Property Name="policyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseInfo" Relationship="Self.FK_BasePolicy_ToTable" FromRole="BasePolicy" ToRole="BaseInfo" />
+          <NavigationProperty Name="TriggerPolicy" Relationship="Self.FK_BasePolicy_ToTable_1" FromRole="BasePolicy" ToRole="TriggerPolicy" />
+        </EntityType>
+        <EntityType Name="BaseType">
+          <Key>
+            <PropertyRef Name="baseTypeId" />
+          </Key>
+          <Property Name="baseTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="parentId" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseActual" Relationship="Self.FK_BaseActual_ToTable_1" FromRole="BaseType" ToRole="BaseActual" />
+          <NavigationProperty Name="BaseInfo" Relationship="Self.FK_BaseInfo_ToTable" FromRole="BaseType" ToRole="BaseInfo" />
+        </EntityType>
+        <EntityType Name="DataFormula">
+          <Key>
+            <PropertyRef Name="dataFormulaId" />
+          </Key>
+          <Property Name="dataFormulaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formulaTypeId" Type="Int32" Nullable="false" />
+          <Property Name="formula" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="formulaCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="formulaRemark" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="otherRemark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sort" Type="Double" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="FormulaType" Relationship="Self.FK_DataFormula_ToTable" FromRole="DataFormula" ToRole="FormulaType" />
+          <NavigationProperty Name="DataResult" Relationship="Self.FK_DataResult_ToTable" FromRole="DataFormula" ToRole="DataResult" />
+          <NavigationProperty Name="FormulaPolicy" Relationship="Self.FK_FormulaPolicy_ToTable" FromRole="DataFormula" ToRole="FormulaPolicy" />
+        </EntityType>
+        <EntityType Name="DataResult">
+          <Key>
+            <PropertyRef Name="dataResultId" />
+          </Key>
+          <Property Name="dataResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataFormulaId" Type="Int32" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="historicalDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="attr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="formulaCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="process" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataFormula" Relationship="Self.FK_DataResult_ToTable" FromRole="DataResult" ToRole="DataFormula" />
+        </EntityType>
+        <EntityType Name="DataSource">
+          <Key>
+            <PropertyRef Name="sourceId" />
+          </Key>
+          <Property Name="sourceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sourceName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sourceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="sourceHost" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sourceUsername" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="sourcePassword" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="isProtect" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="sourceConnection" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="sourceOther" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="databaseName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BaseInfo" Relationship="Self.FK_BaseInfo_ToTable_1" FromRole="DataSource" ToRole="BaseInfo" />
+          <NavigationProperty Name="SourceType" Relationship="Self.FK_DataSource_ToTable" FromRole="DataSource" ToRole="SourceType" />
+        </EntityType>
+        <EntityType Name="FormulaPolicy">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dataFormulaId" Type="Int32" Nullable="false" />
+          <Property Name="policyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataFormula" Relationship="Self.FK_FormulaPolicy_ToTable" FromRole="FormulaPolicy" ToRole="DataFormula" />
+          <NavigationProperty Name="TriggerPolicy" Relationship="Self.FK_FormulaPolicy_ToTable_1" FromRole="FormulaPolicy" ToRole="TriggerPolicy" />
+        </EntityType>
+        <EntityType Name="FormulaType">
+          <Key>
+            <PropertyRef Name="formulaTypeId" />
+          </Key>
+          <Property Name="formulaTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="parentId" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DataFormula" Relationship="Self.FK_DataFormula_ToTable" FromRole="FormulaType" ToRole="DataFormula" />
+        </EntityType>
+        <EntityType Name="MonitorPolicy">
+          <Key>
+            <PropertyRef Name="monitorID" />
+          </Key>
+          <Property Name="monitorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monitorTag" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="monitorVal" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PolicyType">
+          <Key>
+            <PropertyRef Name="policyTypeId" />
+          </Key>
+          <Property Name="policyTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="policyTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TriggerPolicy" Relationship="Self.FK_TriggerPolicy_ToTable" FromRole="PolicyType" ToRole="TriggerPolicy" />
+        </EntityType>
+        <EntityType Name="SourceHandle">
+          <Key>
+            <PropertyRef Name="sourceHandleId" />
+          </Key>
+          <Property Name="sourceHandleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sourceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="handleInfo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="interfaceInfo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="interfaceNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SourceType" Relationship="Self.FK_SourceHandle_ToTable" FromRole="SourceHandle" ToRole="SourceType" />
+        </EntityType>
+        <EntityType Name="SourceType">
+          <Key>
+            <PropertyRef Name="sourceTypeId" />
+          </Key>
+          <Property Name="sourceTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sourceTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DataSource" Relationship="Self.FK_DataSource_ToTable" FromRole="SourceType" ToRole="DataSource" />
+          <NavigationProperty Name="SourceHandle" Relationship="Self.FK_SourceHandle_ToTable" FromRole="SourceType" ToRole="SourceHandle" />
+        </EntityType>
+        <EntityType Name="TaskApplication">
+          <Key>
+            <PropertyRef Name="appId" />
+          </Key>
+          <Property Name="appId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="appTypeID" Type="Int32" Nullable="false" />
+          <Property Name="appPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="appParamKey" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="appParamType" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="appParamVlue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="policyId" Type="Int32" Nullable="false" />
+          <Property Name="isProtect" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="appSort" Type="Double" Nullable="false" />
+          <Property Name="preopen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="openTime" Type="DateTime" Precision="3" />
+          <Property Name="openResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="token" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="refererUrl" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="appState" Type="Int32" Nullable="false" />
+          <Property Name="isKept" Type="Int32" Nullable="false" />
+          <Property Name="restartCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ApplicationType" Relationship="Self.FK_TaskApplication_ToTable" FromRole="TaskApplication" ToRole="ApplicationType" />
+          <NavigationProperty Name="TriggerPolicy" Relationship="Self.FK_TaskApplication_ToTable_1" FromRole="TaskApplication" ToRole="TriggerPolicy" />
+          <NavigationProperty Name="TaskManualState" Relationship="Self.FK_TaskManualState_ToTable" FromRole="TaskApplication" ToRole="TaskManualState" />
+        </EntityType>
+        <EntityType Name="TaskManualState">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="appId" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="TaskApplication" Relationship="Self.FK_TaskManualState_ToTable" FromRole="TaskManualState" ToRole="TaskApplication" />
+        </EntityType>
+        <EntityType Name="TaskRefreshTime">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="refreshTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="TriggerPolicy">
+          <Key>
+            <PropertyRef Name="policyId" />
+          </Key>
+          <Property Name="policyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="policyName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="policyTypeId" Type="Int32" Nullable="false" />
+          <Property Name="taskSpace" Type="Int32" Nullable="false" />
+          <Property Name="taskType" Type="Int32" Nullable="false" />
+          <Property Name="dateList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dateSpace" Type="Int32" Nullable="false" />
+          <Property Name="startTime" Type="DateTime" Precision="3" />
+          <Property Name="endTime" Type="DateTime" Precision="3" />
+          <Property Name="remark" Type="String" MaxLength="2500" FixedLength="false" Unicode="true" />
+          <Property Name="excludeHoliday" Type="Boolean" Nullable="false" />
+          <Property Name="restartCount" Type="Int32" Nullable="false" />
+          <Property Name="restartSpace" Type="Int32" Nullable="false" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="createTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dayList" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BasePolicy" Relationship="Self.FK_BasePolicy_ToTable_1" FromRole="TriggerPolicy" ToRole="BasePolicy" />
+          <NavigationProperty Name="FormulaPolicy" Relationship="Self.FK_FormulaPolicy_ToTable_1" FromRole="TriggerPolicy" ToRole="FormulaPolicy" />
+          <NavigationProperty Name="PolicyType" Relationship="Self.FK_TriggerPolicy_ToTable" FromRole="TriggerPolicy" ToRole="PolicyType" />
+          <NavigationProperty Name="TaskApplication" Relationship="Self.FK_TaskApplication_ToTable_1" FromRole="TriggerPolicy" ToRole="TaskApplication" />
+        </EntityType>
+        <Association Name="FK_TaskApplication_ToTable">
+          <End Role="ApplicationType" Type="Self.ApplicationType" Multiplicity="1" />
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationType">
+              <PropertyRef Name="appTypeID" />
+            </Principal>
+            <Dependent Role="TaskApplication">
+              <PropertyRef Name="appTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseActual_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BaseActual" Type="Self.BaseActual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BaseActual">
+              <PropertyRef Name="BaseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseActual_ToTable_1">
+          <End Role="BaseType" Type="Self.BaseType" Multiplicity="1" />
+          <End Role="BaseActual" Type="Self.BaseActual" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseType">
+              <PropertyRef Name="baseTypeId" />
+            </Principal>
+            <Dependent Role="BaseActual">
+              <PropertyRef Name="baseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseHistorical_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BaseHistorical" Type="Self.BaseHistorical" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BaseHistorical">
+              <PropertyRef Name="baseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseInfo_ToTable">
+          <End Role="BaseType" Type="Self.BaseType" Multiplicity="1" />
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseType">
+              <PropertyRef Name="baseTypeId" />
+            </Principal>
+            <Dependent Role="BaseInfo">
+              <PropertyRef Name="baseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BaseInfo_ToTable_1">
+          <End Role="DataSource" Type="Self.DataSource" Multiplicity="1" />
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataSource">
+              <PropertyRef Name="sourceId" />
+            </Principal>
+            <Dependent Role="BaseInfo">
+              <PropertyRef Name="beformSourceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePolicy_ToTable">
+          <End Role="BaseInfo" Type="Self.BaseInfo" Multiplicity="1" />
+          <End Role="BasePolicy" Type="Self.BasePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BaseInfo">
+              <PropertyRef Name="baseInfoId" />
+            </Principal>
+            <Dependent Role="BasePolicy">
+              <PropertyRef Name="baseInfoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BasePolicy_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="BasePolicy" Type="Self.BasePolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="BasePolicy">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataFormula_ToTable">
+          <End Role="FormulaType" Type="Self.FormulaType" Multiplicity="1" />
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormulaType">
+              <PropertyRef Name="formulaTypeId" />
+            </Principal>
+            <Dependent Role="DataFormula">
+              <PropertyRef Name="formulaTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataResult_ToTable">
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="1" />
+          <End Role="DataResult" Type="Self.DataResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormula">
+              <PropertyRef Name="dataFormulaId" />
+            </Principal>
+            <Dependent Role="DataResult">
+              <PropertyRef Name="dataFormulaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulaPolicy_ToTable">
+          <End Role="DataFormula" Type="Self.DataFormula" Multiplicity="1" />
+          <End Role="FormulaPolicy" Type="Self.FormulaPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DataFormula">
+              <PropertyRef Name="dataFormulaId" />
+            </Principal>
+            <Dependent Role="FormulaPolicy">
+              <PropertyRef Name="dataFormulaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataSource_ToTable">
+          <End Role="SourceType" Type="Self.SourceType" Multiplicity="1" />
+          <End Role="DataSource" Type="Self.DataSource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="sourceTypeId" />
+            </Principal>
+            <Dependent Role="DataSource">
+              <PropertyRef Name="sourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormulaPolicy_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="FormulaPolicy" Type="Self.FormulaPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="FormulaPolicy">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TriggerPolicy_ToTable">
+          <End Role="PolicyType" Type="Self.PolicyType" Multiplicity="1" />
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyType">
+              <PropertyRef Name="policyTypeId" />
+            </Principal>
+            <Dependent Role="TriggerPolicy">
+              <PropertyRef Name="policyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SourceHandle_ToTable">
+          <End Role="SourceType" Type="Self.SourceType" Multiplicity="1" />
+          <End Role="SourceHandle" Type="Self.SourceHandle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceType">
+              <PropertyRef Name="sourceTypeId" />
+            </Principal>
+            <Dependent Role="SourceHandle">
+              <PropertyRef Name="sourceTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskApplication_ToTable_1">
+          <End Role="TriggerPolicy" Type="Self.TriggerPolicy" Multiplicity="1" />
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TriggerPolicy">
+              <PropertyRef Name="policyId" />
+            </Principal>
+            <Dependent Role="TaskApplication">
+              <PropertyRef Name="policyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskManualState_ToTable">
+          <End Role="TaskApplication" Type="Self.TaskApplication" Multiplicity="1" />
+          <End Role="TaskManualState" Type="Self.TaskManualState" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskApplication">
+              <PropertyRef Name="appId" />
+            </Principal>
+            <Dependent Role="TaskManualState">
+              <PropertyRef Name="appId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskManagementTestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApplicationType" EntityType="Self.ApplicationType" />
+          <EntitySet Name="BaseActual" EntityType="Self.BaseActual" />
+          <EntitySet Name="BaseHistorical" EntityType="Self.BaseHistorical" />
+          <EntitySet Name="BaseInfo" EntityType="Self.BaseInfo" />
+          <EntitySet Name="BasePolicy" EntityType="Self.BasePolicy" />
+          <EntitySet Name="BaseType" EntityType="Self.BaseType" />
+          <EntitySet Name="DataFormula" EntityType="Self.DataFormula" />
+          <EntitySet Name="DataResult" EntityType="Self.DataResult" />
+          <EntitySet Name="DataSource" EntityType="Self.DataSource" />
+          <EntitySet Name="FormulaPolicy" EntityType="Self.FormulaPolicy" />
+          <EntitySet Name="FormulaType" EntityType="Self.FormulaType" />
+          <EntitySet Name="MonitorPolicy" EntityType="Self.MonitorPolicy" />
+          <EntitySet Name="PolicyType" EntityType="Self.PolicyType" />
+          <EntitySet Name="SourceHandle" EntityType="Self.SourceHandle" />
+          <EntitySet Name="SourceType" EntityType="Self.SourceType" />
+          <EntitySet Name="TaskApplication" EntityType="Self.TaskApplication" />
+          <EntitySet Name="TaskManualState" EntityType="Self.TaskManualState" />
+          <EntitySet Name="TaskRefreshTime" EntityType="Self.TaskRefreshTime" />
+          <EntitySet Name="TriggerPolicy" EntityType="Self.TriggerPolicy" />
+          <AssociationSet Name="FK_TaskApplication_ToTable" Association="Self.FK_TaskApplication_ToTable">
+            <End Role="ApplicationType" EntitySet="ApplicationType" />
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseActual_ToTable" Association="Self.FK_BaseActual_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BaseActual" EntitySet="BaseActual" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseActual_ToTable_1" Association="Self.FK_BaseActual_ToTable_1">
+            <End Role="BaseType" EntitySet="BaseType" />
+            <End Role="BaseActual" EntitySet="BaseActual" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseHistorical_ToTable" Association="Self.FK_BaseHistorical_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BaseHistorical" EntitySet="BaseHistorical" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseInfo_ToTable" Association="Self.FK_BaseInfo_ToTable">
+            <End Role="BaseType" EntitySet="BaseType" />
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BaseInfo_ToTable_1" Association="Self.FK_BaseInfo_ToTable_1">
+            <End Role="DataSource" EntitySet="DataSource" />
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePolicy_ToTable" Association="Self.FK_BasePolicy_ToTable">
+            <End Role="BaseInfo" EntitySet="BaseInfo" />
+            <End Role="BasePolicy" EntitySet="BasePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BasePolicy_ToTable_1" Association="Self.FK_BasePolicy_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="BasePolicy" EntitySet="BasePolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataFormula_ToTable" Association="Self.FK_DataFormula_ToTable">
+            <End Role="FormulaType" EntitySet="FormulaType" />
+            <End Role="DataFormula" EntitySet="DataFormula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataResult_ToTable" Association="Self.FK_DataResult_ToTable">
+            <End Role="DataFormula" EntitySet="DataFormula" />
+            <End Role="DataResult" EntitySet="DataResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulaPolicy_ToTable" Association="Self.FK_FormulaPolicy_ToTable">
+            <End Role="DataFormula" EntitySet="DataFormula" />
+            <End Role="FormulaPolicy" EntitySet="FormulaPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataSource_ToTable" Association="Self.FK_DataSource_ToTable">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="DataSource" EntitySet="DataSource" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormulaPolicy_ToTable_1" Association="Self.FK_FormulaPolicy_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="FormulaPolicy" EntitySet="FormulaPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TriggerPolicy_ToTable" Association="Self.FK_TriggerPolicy_ToTable">
+            <End Role="PolicyType" EntitySet="PolicyType" />
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SourceHandle_ToTable" Association="Self.FK_SourceHandle_ToTable">
+            <End Role="SourceType" EntitySet="SourceType" />
+            <End Role="SourceHandle" EntitySet="SourceHandle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskApplication_ToTable_1" Association="Self.FK_TaskApplication_ToTable_1">
+            <End Role="TriggerPolicy" EntitySet="TriggerPolicy" />
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskManualState_ToTable" Association="Self.FK_TaskManualState_ToTable">
+            <End Role="TaskApplication" EntitySet="TaskApplication" />
+            <End Role="TaskManualState" EntitySet="TaskManualState" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TaskManagementTestModelStoreContainer" CdmEntityContainer="TaskManagementTestEntities">
+          <EntitySetMapping Name="ApplicationType">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.ApplicationType">
+              <MappingFragment StoreEntitySet="ApplicationType">
+                <ScalarProperty Name="appTypeID" ColumnName="appTypeID" />
+                <ScalarProperty Name="appTypeName" ColumnName="appTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseActual">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.BaseActual">
+              <MappingFragment StoreEntitySet="BaseActual">
+                <ScalarProperty Name="baseActualId" ColumnName="baseActualId" />
+                <ScalarProperty Name="BaseInfoId" ColumnName="BaseInfoId" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="attr" ColumnName="attr" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="baseTypeId" ColumnName="baseTypeId" />
+                <ScalarProperty Name="valueStr" ColumnName="valueStr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseHistorical">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.BaseHistorical">
+              <MappingFragment StoreEntitySet="BaseHistorical">
+                <ScalarProperty Name="baseHistoricalId" ColumnName="baseHistoricalId" />
+                <ScalarProperty Name="baseInfoId" ColumnName="baseInfoId" />
+                <ScalarProperty Name="historicalDate" ColumnName="historicalDate" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="attr" ColumnName="attr" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="valueStr" ColumnName="valueStr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseInfo">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.BaseInfo">
+              <MappingFragment StoreEntitySet="BaseInfo">
+                <ScalarProperty Name="baseInfoId" ColumnName="baseInfoId" />
+                <ScalarProperty Name="baseTypeId" ColumnName="baseTypeId" />
+                <ScalarProperty Name="baseName" ColumnName="baseName" />
+                <ScalarProperty Name="foreachSourceId" ColumnName="foreachSourceId" />
+                <ScalarProperty Name="beformSourceId" ColumnName="beformSourceId" />
+                <ScalarProperty Name="isActual" ColumnName="isActual" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="foreachParam" ColumnName="foreachParam" />
+                <ScalarProperty Name="beform" ColumnName="beform" />
+                <ScalarProperty Name="before" ColumnName="before" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="refererUrl" ColumnName="refererUrl" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="handleId" ColumnName="handleId" />
+                <ScalarProperty Name="openTime" ColumnName="openTime" />
+                <ScalarProperty Name="openResult" ColumnName="openResult" />
+                <ScalarProperty Name="restartCount" ColumnName="restartCount" />
+                <ScalarProperty Name="valueType" ColumnName="valueType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BasePolicy">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.BasePolicy">
+              <MappingFragment StoreEntitySet="BasePolicy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="baseInfoId" ColumnName="baseInfoId" />
+                <ScalarProperty Name="policyId" ColumnName="policyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaseType">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.BaseType">
+              <MappingFragment StoreEntitySet="BaseType">
+                <ScalarProperty Name="baseTypeId" ColumnName="baseTypeId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="level" ColumnName="level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataFormula">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.DataFormula">
+              <MappingFragment StoreEntitySet="DataFormula">
+                <ScalarProperty Name="dataFormulaId" ColumnName="dataFormulaId" />
+                <ScalarProperty Name="formulaTypeId" ColumnName="formulaTypeId" />
+                <ScalarProperty Name="formula" ColumnName="formula" />
+                <ScalarProperty Name="formulaCode" ColumnName="formulaCode" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="formulaRemark" ColumnName="formulaRemark" />
+                <ScalarProperty Name="otherRemark" ColumnName="otherRemark" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataResult">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.DataResult">
+              <MappingFragment StoreEntitySet="DataResult">
+                <ScalarProperty Name="dataResultId" ColumnName="dataResultId" />
+                <ScalarProperty Name="dataFormulaId" ColumnName="dataFormulaId" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="historicalDate" ColumnName="historicalDate" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="attr" ColumnName="attr" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="formulaCode" ColumnName="formulaCode" />
+                <ScalarProperty Name="process" ColumnName="process" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataSource">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.DataSource">
+              <MappingFragment StoreEntitySet="DataSource">
+                <ScalarProperty Name="sourceId" ColumnName="sourceId" />
+                <ScalarProperty Name="sourceName" ColumnName="sourceName" />
+                <ScalarProperty Name="sourceTypeId" ColumnName="sourceTypeId" />
+                <ScalarProperty Name="sourceHost" ColumnName="sourceHost" />
+                <ScalarProperty Name="sourceUsername" ColumnName="sourceUsername" />
+                <ScalarProperty Name="sourcePassword" ColumnName="sourcePassword" />
+                <ScalarProperty Name="isProtect" ColumnName="isProtect" />
+                <ScalarProperty Name="sourceConnection" ColumnName="sourceConnection" />
+                <ScalarProperty Name="sourceOther" ColumnName="sourceOther" />
+                <ScalarProperty Name="databaseName" ColumnName="databaseName" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormulaPolicy">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.FormulaPolicy">
+              <MappingFragment StoreEntitySet="FormulaPolicy">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="dataFormulaId" ColumnName="dataFormulaId" />
+                <ScalarProperty Name="policyId" ColumnName="policyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormulaType">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.FormulaType">
+              <MappingFragment StoreEntitySet="FormulaType">
+                <ScalarProperty Name="formulaTypeId" ColumnName="formulaTypeId" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="parentId" ColumnName="parentId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="level" ColumnName="level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonitorPolicy">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.MonitorPolicy">
+              <MappingFragment StoreEntitySet="MonitorPolicy">
+                <ScalarProperty Name="monitorID" ColumnName="monitorID" />
+                <ScalarProperty Name="monitorTag" ColumnName="monitorTag" />
+                <ScalarProperty Name="monitorVal" ColumnName="monitorVal" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyType">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.PolicyType">
+              <MappingFragment StoreEntitySet="PolicyType">
+                <ScalarProperty Name="policyTypeId" ColumnName="policyTypeId" />
+                <ScalarProperty Name="policyTypeName" ColumnName="policyTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourceHandle">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.SourceHandle">
+              <MappingFragment StoreEntitySet="SourceHandle">
+                <ScalarProperty Name="sourceHandleId" ColumnName="sourceHandleId" />
+                <ScalarProperty Name="sourceTypeId" ColumnName="sourceTypeId" />
+                <ScalarProperty Name="handleInfo" ColumnName="handleInfo" />
+                <ScalarProperty Name="interfaceInfo" ColumnName="interfaceInfo" />
+                <ScalarProperty Name="interfaceNumber" ColumnName="interfaceNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourceType">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.SourceType">
+              <MappingFragment StoreEntitySet="SourceType">
+                <ScalarProperty Name="sourceTypeId" ColumnName="sourceTypeId" />
+                <ScalarProperty Name="sourceTypeName" ColumnName="sourceTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskApplication">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.TaskApplication">
+              <MappingFragment StoreEntitySet="TaskApplication">
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="appTitle" ColumnName="appTitle" />
+                <ScalarProperty Name="appTypeID" ColumnName="appTypeID" />
+                <ScalarProperty Name="appPath" ColumnName="appPath" />
+                <ScalarProperty Name="appParamKey" ColumnName="appParamKey" />
+                <ScalarProperty Name="appParamType" ColumnName="appParamType" />
+                <ScalarProperty Name="appParamVlue" ColumnName="appParamVlue" />
+                <ScalarProperty Name="policyId" ColumnName="policyId" />
+                <ScalarProperty Name="isProtect" ColumnName="isProtect" />
+                <ScalarProperty Name="appSort" ColumnName="appSort" />
+                <ScalarProperty Name="preopen" ColumnName="preopen" />
+                <ScalarProperty Name="openTime" ColumnName="openTime" />
+                <ScalarProperty Name="openResult" ColumnName="openResult" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="refererUrl" ColumnName="refererUrl" />
+                <ScalarProperty Name="appState" ColumnName="appState" />
+                <ScalarProperty Name="isKept" ColumnName="isKept" />
+                <ScalarProperty Name="restartCount" ColumnName="restartCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskManualState">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.TaskManualState">
+              <MappingFragment StoreEntitySet="TaskManualState">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="appId" ColumnName="appId" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskRefreshTime">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.TaskRefreshTime">
+              <MappingFragment StoreEntitySet="TaskRefreshTime">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="refreshTime" ColumnName="refreshTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TriggerPolicy">
+            <EntityTypeMapping TypeName="TaskManagementTestModel.TriggerPolicy">
+              <MappingFragment StoreEntitySet="TriggerPolicy">
+                <ScalarProperty Name="policyId" ColumnName="policyId" />
+                <ScalarProperty Name="policyName" ColumnName="policyName" />
+                <ScalarProperty Name="policyTypeId" ColumnName="policyTypeId" />
+                <ScalarProperty Name="taskSpace" ColumnName="taskSpace" />
+                <ScalarProperty Name="taskType" ColumnName="taskType" />
+                <ScalarProperty Name="dateList" ColumnName="dateList" />
+                <ScalarProperty Name="dateSpace" ColumnName="dateSpace" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="excludeHoliday" ColumnName="excludeHoliday" />
+                <ScalarProperty Name="restartCount" ColumnName="restartCount" />
+                <ScalarProperty Name="restartSpace" ColumnName="restartSpace" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="dayList" ColumnName="dayList" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
